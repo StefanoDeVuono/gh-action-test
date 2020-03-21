@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "test": "ava --verbose --timeout=2m"
   },
   "keywords": [],
   "author": "",

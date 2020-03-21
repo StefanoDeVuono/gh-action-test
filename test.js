@@ -13,14 +13,14 @@ const mongoUri = `mongodb://${DB_ADDR}:${DB_PORT}/test`,
 
 test('connect', async t => {
   const [err, _res] = await to(mongoose.connect(mongoUri, options))
-  if (err) t.log(err)
-  t.pass()
+  if (err) t.fail(err)
+  t.pass('connected')
 })
 
 test('model', async t => {
   const Cat = mongoose.model('Cat', { name: String })
   const kitty = new Cat({ name: 'Zildjian' })
   const [err, res] = await to(kitty.save())
-  if (err) t.log(err)
-  t.is(res.name, 'Zildjian')
+  if (err) t.fail(err)
+  t.is(res.name, 'Zildjian', 'model saved')
 })
