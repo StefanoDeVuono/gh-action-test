@@ -8,6 +8,7 @@ const mongoUri = `mongodb://${DB_ADDR}:${DB_PORT}/test`,
   options = {
     useUnifiedTopology: true,
     useNewUrlParser: true,
+    replicaSet: REPLICA_NAME,
   }
 
 test('connect', async t => {
