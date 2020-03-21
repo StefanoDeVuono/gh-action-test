@@ -2,13 +2,13 @@ const mongoose = require('mongoose'),
   { to } = require('await-to-js'),
   test = require('ava')
 
-const [DB_ADDR, DB_PORT, REPLICA_NAME] = ['127.0.0.1', 27017, 'rsTest']
+const [DB_ADDR, DB_PORT, REPLICA_NAME] = ['localhost', 27017, 'rsTest']
 
-const mongoUri = `mongodb://${DB_ADDR}:${DB_PORT}/test`,
+const mongoUri = `mongodb://${DB_ADDR}:${DB_PORT}/test?replSet=${REPLICA_NAME}`,
   options = {
     useUnifiedTopology: true,
     useNewUrlParser: true,
-    replicaSet: REPLICA_NAME,
+    // replicaSet: REPLICA_NAME,
   }
 
 test('connect', async t => {
