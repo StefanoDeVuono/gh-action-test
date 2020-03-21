@@ -1,4 +1,5 @@
 const mongoose = require('mongoose'),
+  { to } = require('await-to-js'),
   test = require('ava')
 
 const [DB_ADDR, DB_PORT, REPLICA_NAME] = ['localhost', 27017, 'rsTest']
@@ -11,13 +12,15 @@ const mongoUri = `mongodb://${DB_ADDR}:${DB_PORT}/test`,
   }
 
 test('connect', async t => {
-  const res = await mongoose.connect(mongoUri, options)
+  const [err, _res] = await to(mongoose.connect(mongoUri, options))
+  if (err) t.log(err)
   t.pass()
 })
 
 test('model', async t => {
   const Cat = mongoose.model('Cat', { name: String })
   const kitty = new Cat({ name: 'Zildjian' })
-  const res = await kitty.save()
+  const [err, res] = await to(kitty.save())
+  if (err) t.log(err)
   t.is(res.name, 'Zildjian')
 })
