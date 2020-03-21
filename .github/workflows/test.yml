@@ -14,10 +14,9 @@ jobs:
         with:
           node-version: 12.x
 
-      - name: Start MongoDB v4.2
-        uses: superchargejs/mongodb-github-action@1.1.0
-        with:
-          mongodb-version: 4.2
+      - name: Create mongo Docker container
+        id: build_mongo_docker
+        uses: StefanoDeVuono/mongodb-github-action@7cdb383b82b268afea3c1064e3b47743e3004c0f
 
       - run: npm install
 
