@@ -18,7 +18,7 @@ jobs:
         id: build_mongo_docker
         uses: StefanoDeVuono/mongodb-github-action@feature/add-repl-set-option
         env:
-          INPUT_MONGO_REPL_SET: rsTest
+          MONGO_REPL_SET: rsTest
 
       - run: npm install
 
