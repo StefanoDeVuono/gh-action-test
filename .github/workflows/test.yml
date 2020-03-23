@@ -17,9 +17,9 @@ jobs:
       - name: Create mongo Docker container
         id: build_mongo_docker
         uses: StefanoDeVuono/mongodb-github-action@feature/add-repl-set-option
+        env:
+          MONGO_REPL_SET: rsTest
 
-        # env:
-        # MONGO_REPL_SET: rsTest
       - run: npm install
 
       - run: npm test
