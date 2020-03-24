@@ -5,15 +5,15 @@ const mongoose = require('mongoose'),
 
 const [DB_ADDR, DB_PORT, REPLICA_NAME] = ['localhost', 27017, 'rsTest']
 
-const mongoUri = `mongodb://${DB_ADDR}:${DB_PORT}/`,
+const mongoUri = `mongodb://${DB_ADDR}:${DB_PORT}/?replicaSet=${REPLICA_NAME}`,
   options = {
-    useUnifiedTopology: true,
+    useUnifiedTopology: galse,
     useNewUrlParser: true,
     replicaSet: REPLICA_NAME,
   }
 
 test.before('setup', async t => {
-  const [err, _res] = await to(mongoose.connect(mongoUri, options))
+  const [err, _res] = await to(mongoose.connect(mongoUri))
   t.log(`mongouri "${mongoUri}"`)
   if (err) {
     t.fail(err)
