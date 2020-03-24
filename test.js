@@ -7,7 +7,7 @@ const [DB_ADDR, DB_PORT, REPLICA_NAME] = ['localhost', 27017, 'rsTest']
 
 const mongoUri = `mongodb://${DB_ADDR}:${DB_PORT}/?replicaSet=${REPLICA_NAME}`,
   options = {
-    useUnifiedTopology: galse,
+    useUnifiedTopology: false,
     useNewUrlParser: true,
     replicaSet: REPLICA_NAME,
   }
