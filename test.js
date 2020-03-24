@@ -3,7 +3,7 @@ const mongoose = require('mongoose'),
   { Schema } = mongoose,
   test = require('ava')
 
-const [DB_ADDR, DB_PORT, REPLICA_NAME] = ['127.0.0.1', 27017, 'rsTest']
+const [DB_ADDR, DB_PORT, REPLICA_NAME] = ['localhost', 27017, 'rsTest']
 
 const mongoUri = `mongodb://${DB_ADDR}:${DB_PORT}/test`,
   options = {
