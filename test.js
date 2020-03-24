@@ -12,10 +12,17 @@ const mongoUri = `mongodb://${DB_ADDR}:${DB_PORT}/test`,
     replicaSet: REPLICA_NAME,
   }
 
-test('connect', async t => {
+test.before('setup', async t => {
   const [err, _res] = await to(mongoose.connect(mongoUri, options))
   if (err) t.fail(err)
   t.pass('connected')
+})
+
+test('replica set', async t => {
+  const admin = mongoose.connection.db.admin()
+  const [err, res] = await to(admin.command({ replSetGetStatus: 1 }))
+  t.is(res.set, REPLICA_NAME, `replica set ${REPLICA_NAME} is set up`)
+  t.truthy(res.ok)
 })
 
 test('model', async t => {
@@ -47,4 +54,8 @@ test('transaction', async t => {
     })
   )
   t.truthy(customer)
+})
+
+test.after('teardown', async t => {
+  await mongoose.connection.db.dropDatabase()
 })
