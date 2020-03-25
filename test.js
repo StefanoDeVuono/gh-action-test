@@ -5,7 +5,7 @@ const mongoose = require('mongoose'),
 
 const [DB_ADDR, DB_PORT, REPLICA_NAME] = ['localhost', 27017, 'rsTest']
 
-const mongoUri = `mongodb://${DB_ADDR}:${DB_PORT}/?replicaSet=${REPLICA_NAME}`,
+const mongoUri = `mongodb://${DB_ADDR}:${DB_PORT}/`,
   options = {
     useUnifiedTopology: false,
     useNewUrlParser: true,
