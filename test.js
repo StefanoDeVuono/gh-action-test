@@ -13,7 +13,7 @@ const mongoUri = `mongodb://${DB_ADDR}:${DB_PORT}/test`,
   }
 
 test.before('setup', async t => {
-  const [err, _res] = await to(mongoose.connect(mongoUri))
+  const [err, _res] = await to(mongoose.connect(mongoUri, options))
   t.log(`mongouri "${mongoUri}"`)
   if (err) {
     t.fail(err)
